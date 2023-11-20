@@ -8,7 +8,10 @@ import com.calificaciones.Model.Profesor;
 import com.calificaciones.Model.Register;
 import com.calificaciones.Service.SubjectService;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.ui.Model;
 import com.calificaciones.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import com.calificaciones.Security.WebConfig;
 import java.util.HashMap;
 
 @Controller
@@ -88,4 +91,50 @@ public class PersonController {
         personService.registerStudentSubject(register);
         return "redirect:/";
     }
+
+    @GetMapping("/teacher/EditInformation")
+    public String editarInformacion(Authentication auth, Model model) {
+        UserDetails user = (UserDetails) auth.getPrincipal();
+        Persona persona = personService.getInfoProfessor(this.profesor.getIdentification());
+        InformacionPersona informacionCompleta = new InformacionPersona();
+        informacionCompleta.setId(persona.getId());
+        informacionCompleta.setId_type(persona.getId_type());
+        informacionCompleta.setName(persona.getName());
+        informacionCompleta.setSurname(persona.getSurname());
+        informacionCompleta.setEmail(persona.getEmail());
+        informacionCompleta.setPhone(persona.getPhoneNumber());
+        informacionCompleta.setAddress(persona.getAddress());
+        informacionCompleta.setUsername(this.profesor.getUser());
+        informacionCompleta.setPassword(this.profesor.getPassword());
+
+
+        model.addAttribute("informacion", informacionCompleta);
+        return "editarProfesor";
+    }
+
+    @PostMapping("/teacher/EditInformation/Confirm")
+    public String InformacionEditadaProfesor(Authentication auth, @ModelAttribute InformacionPersona informacion) {
+        UserDetails detallesUsuario = (UserDetails)auth.getPrincipal();
+        Profesor editProfesor = personService.getProfessor(detallesUsuario.getUsername());
+        Persona persona = new Persona();
+        persona.setId(informacion.getId());
+        persona.setId_type(informacion.getId_type());
+        persona.setName(informacion.getName());
+        persona.setSurname(informacion.getSurname());
+        persona.setEmail(informacion.getEmail());
+        persona.setPhoneNumber(informacion.getPhone());
+        persona.setAddress(informacion.getAddress());
+        persona.setRole("Profesor");
+
+
+        editProfesor.setUser(detallesUsuario.getUsername());
+        editProfesor.setPassword(informacion.getPassword());
+
+
+        personService.addProfessor(editProfesor);
+        personService.addPerson(persona);
+
+        return "redirect:/";
+    }
+
 }

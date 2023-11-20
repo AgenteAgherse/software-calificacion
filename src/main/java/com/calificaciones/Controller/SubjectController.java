@@ -1,10 +1,8 @@
 package com.calificaciones.Controller;
 
+import com.calificaciones.External_Forms.DetallesNota;
 import com.calificaciones.External_Forms.FormsIndex;
-import com.calificaciones.Model.Materia;
-import com.calificaciones.Model.Persona;
-import com.calificaciones.Model.Profesor;
-import com.calificaciones.Model.Tarea;
+import com.calificaciones.Model.*;
 import com.calificaciones.Repository.GradeRepository;
 import com.calificaciones.Repository.RegisterRepository;
 import com.calificaciones.Service.GradeService;
@@ -57,7 +55,7 @@ public class SubjectController {
             curso = subjectService.getSubject(Integer.parseInt(materia.getCurso()));
         }
 
-        if (curso == null) return "index";
+        if (curso == null) return "redirect:/";
 
         ArrayList<Persona> personas = personService.getGroupOfStudentsInCourse(Integer.parseInt(materia.getCurso()));
         UserDetails details = (UserDetails) auth.getPrincipal();
@@ -73,9 +71,53 @@ public class SubjectController {
     @GetMapping("/lookSubject/{materia}/homeworkDetails")
     public String verDetallesMateria(@PathVariable("materia") Integer materia, Model model){
         ArrayList<Tarea> tareas = homeworkService.getListOfHomeworks(materia);
+        ArrayList<Nota> notas = gradeService.getGradesBySubject(materia);
+
+        ArrayList<DetallesNota> detalles = new ArrayList<>();
+        for (Nota nota: notas) {
+            DetallesNota nuevoDetalle = new DetallesNota();
+            Persona informacionPersona = personService.getStudentByIdStudent(nota.getStudent());
+            Tarea buscarTarea = homeworkService.getHomework(nota.getHomeworkId());
+
+            nuevoDetalle.setId_nota(nota.getId());
+            nuevoDetalle.setId_estudiante(nota.getStudent());
+            nuevoDetalle.setNota(nota.getGrade());
+            nuevoDetalle.setId_tarea(nota.getHomeworkId());
+            nuevoDetalle.setNombre_tarea(buscarTarea.getName());
+            nuevoDetalle.setNombre_estudiante(informacionPersona.getName() + " " + informacionPersona.getSurname());
+
+            detalles.add(nuevoDetalle);
+        }
+
+        ArrayList<DetallesNota> listadoEstudiantes = new ArrayList<>();
+        for (int i = 0; i < (Integer) detalles.size()/tareas.size(); i++) {
+            listadoEstudiantes.add(detalles.get(i));
+        }
+        //Array sin repetir usuarios.
+
+
+        model.addAttribute("materia", materia);
+        model.addAttribute("nuevaNota", new DetallesNota());
+        model.addAttribute("listadoEstudiantes", listadoEstudiantes);
+        model.addAttribute("notas", notas);
+        model.addAttribute("detalles", detalles);
         model.addAttribute("tareas", tareas);
 
         return "detallesTrabajos";
+    }
+
+    @PostMapping("/lookSubject/{materia}/homeworkDetails/Modify")
+    public String modifyGrade(@PathVariable("materia") Integer idSubject, @ModelAttribute DetallesNota newGrade) {
+        Nota nota = new Nota();
+
+        nota.setId(newGrade.getId_nota());
+        nota.setHomeworkId(newGrade.getId_tarea());
+        nota.setStudent(newGrade.getId_estudiante());
+        nota.setGrade(newGrade.getNota());
+        nota.setComments(newGrade.getComentario());
+
+        gradeService.saveGrade(nota.getStudent(), nota.getHomeworkId(), nota.getGrade(), nota.getComments());
+        return "redirect:/lookSubject/" + idSubject + "/homeworkDetails";
     }
 
 

@@ -46,3 +46,12 @@ El proyecto a su vez, está dividido por diferentes carpetas las cuales van a se
 * **Security**: Carpeta donde se guarda la configuración del login y la encriptación de los usuarios y contraseñas de los profesores. Hay que tener en cuenta que con la versión 6.1.5 de Spring Security, la configuración de la seguridad cambia y se hace obligatorio el uso de funciones lambda.
 * **Model, Service y Controller**: Son carpetas que crean objetos de las diferentes entidades de la base de datos, hacen uso del repositorio y brinda dirección dentro del sitio respectivamente. Estas carpetas son separadas para cumplir con el patrón estructural MVCS.
 * **Repository**: Carpeta que guarda los interfaces que conectan el modelo con el repositorio JPA (Para operaciones con la base de datos).
+
+## Consideraciones
+El proyecto al incluir la información por Thymeleaf en vez de enviar la información por medio de un JSON (el frontend y el backend es netamente en Spring), va a mostrar las salidas en Postman en formato de HTML.
+![Imagen del index sin haber iniciado sesión](https://github.com/AgenteAgherse/software-calificacion/blob/main/Database/inicio(wo_login).png)
+
+En la imagen anterior, se muestra el formulario del login dado que Spring Security está funcionando sin problemas. Dado que la configuración no permite en ninguna de las opciones iniciar la sesión, se procede a llenar la información de inicio de sesión en el navegador.
+![Formulario de inicio de sesión](https://github.com/AgenteAgherse/software-calificacion/blob/main/Database/form_login.png)
+
+![Index](https://github.com/AgenteAgherse/software-calificacion/blob/main/Database/index.png)

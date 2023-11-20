@@ -33,6 +33,8 @@ public class PersonService {
     public void addStudent(Estudiante estudiante) {
         studentRepository.save(estudiante);
     }
+
+    public void addProfessor(Profesor profesor) { teacherRepository.save(profesor);}
     public List<Persona> obtenerPersonas() {
         return personRepository.findAll();
     }
@@ -52,11 +54,22 @@ public class PersonService {
         return profesor.orElseGet(Profesor::new);
     }
 
+    public Persona getInfoProfessor(String identification) {
+        return personRepository.findById(identification).orElseGet(Persona::new);
+    }
+
+
+
     public Estudiante getStudent(String id) {
         Optional<Estudiante> estudiante = studentRepository.findByIdentification(id);
         return estudiante.orElseGet(null);
 
     }
+
+    public Persona getStudentByIdStudent(Integer idStudent) {
+        return personRepository.obtenerInformacionPersona(idStudent).orElseGet(null);
+    }
+
     /**
      * Búsqueda de información personal de estudiantes por la materia.
      * @return personas.orElseGet(ArrayList::new)

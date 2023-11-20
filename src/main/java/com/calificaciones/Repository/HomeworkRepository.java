@@ -17,6 +17,9 @@ public interface HomeworkRepository extends JpaRepository<Tarea, Integer> {
     void deleteBySubject(@Param("nota") Integer materia);
 
 
+    @Query("SELECT t FROM Tarea t WHERE t.id IN (SELECT n.homeworkId FROM Nota n WHERE n.id = :id_nota)")
+    Optional<Tarea> getHwByGrade(@Param("id_nota") Integer id);
+
     @Query("SELECT t FROM Tarea t WHERE t.subject = :materia")
     Optional<ArrayList<Tarea>> hwBySubject(@Param("materia") Integer id_materia);
 }

@@ -13,20 +13,70 @@
 
     <h1 class="mt-5">Listado de tareas y notas estudiantes</h1>
     <main class="container mt-5">
-        <table class="table">
-            <thead>
-                <th scope="col">Título</th>
-                <th scope="col">Detalles</th>
-            </thead>
-            <tbody>
-                <tr th:each="trabajo: ${tareas}">
-                    <td th:text="${trabajo.name}"></td>
-                    <td th:text="${trabajo.description}"></td>
-                </tr>
-            </tbody>
-        </table>
+        <section class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <th scope="col">Título</th>
+                        <th scope="col">Detalles</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="trabajo: ${tareas}">
+                            <td th:text="${trabajo.name}"></td>
+                            <td th:text="${trabajo.description}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="row border">
+            <div class="col-7"> <!--Sección donde se muestran las notas.-->
+                <h2>Notas por tarea</h2>
+                <table class="table">
+                    <thead>
+                        <th scope="col">Titulo Tarea</th>
+                        <th scope="col">Nombre y Apellido</th>
+                        <th scope="col">Nota</th>
+                    </thead>
+                    <tbody id="vernotas">
+                        <tr th:each="detalle: ${detalles}">
+                            <td th:text="${detalle.nombre_tarea}"></td>
+                            <td th:text="${detalle.nombre_estudiante}"></td>
+                            <td th:text="${detalle.nota}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-5">
+                <h2>Modificar Nota</h2>
+                <form th:action="@{'/lookSubject/' + ${materia} + '/homeworkDetails/Modify'}" method="post" th:object="${nuevaNota}">
+                    <label for="tarea">Seleccione la tarea</label>
+                    <select class="form-select" name="tarea" id="trabajo" th:field="*{id_tarea}">
+                        <option value=0>Seleccione...</option>
+                        <option th:each="tarea: ${tareas}" th:value="${tarea.id}" th:text="${tarea.name}"></option>
+                    </select>
+
+                    <label for="estudiante">Seleccione el estudiante</label>
+                    <select class="form-select" name="estudiante" id="estudiante" th:field="*{id_estudiante}">
+                        <option value=0>Seleccione...</option>
+                        <option th:each="estudiante: ${listadoEstudiantes}" th:value="${estudiante.id_estudiante}" th:text="${estudiante.nombre_estudiante}"></option>
+                    </select>
+
+                    <label for="nota">Ingrese la nota</label>
+                    <input type="number" class="form-control" name="nota" id="nota" placeholder="Ingrese la nueva nota." th:field="*{nota}" required>
+
+                    <label for="comentario">Añada un comentario</label>
+                    <textarea name="comentario" id="comentario" cols="30" rows="10" th:field="*{comentario}" placeholder="Ingrese un comentario (opcional)"></textarea>
+                    
+                    <input type="submit" class="btn btn-warning form-control mt-5" value="Modificar Nota">
+                </form>
+            </div>
+        </section>
     </main>
     <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/}">Volver a Inicio</a>
     
+
 </body>
 </html>

@@ -20,4 +20,12 @@ public class HomeworkService {
     public ArrayList<Tarea> getListOfHomeworks(Integer id_materia) {
         return homeworkRepository.hwBySubject(id_materia).orElseGet(ArrayList<Tarea>::new);
     }
+
+    public Tarea getHwByGrade(Integer id_grade) {
+        return homeworkRepository.getHwByGrade(id_grade).orElseGet(null);
+    }
+
+    public Tarea getHomework(Integer id_subject) {
+        return homeworkRepository.findById(id_subject).orElseGet(null);
+    }
 }
