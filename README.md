@@ -25,6 +25,24 @@ La base de datos actualmente contiene 7 tablas de las cuales, se puede tomar la 
 
 El modelo entidad relación es el siguiente:
 
-![Diagrama entidad relación del proyecto](.\Database\MER.png)
+![Diagrama entidad relación del proyecto](https://github.com/AgenteAgherse/software-calificacion/blob/main/Database/MER.png)
 
 > Nota: Se cambia el atributo tipo_identificacion de INT a VARCHAR.
+
+
+
+# Proyecto
+El proyecto actualmente usa los servicios que provee el framework de Spring Framework.
+Las librerías necesarias dentro del proyecto son las siguientes:
+* JPA Repository
+* Lombok
+* MySQL Connector
+* Spring Boot
+* Spring Security
+* Spring Web Services
+* Thymeleaf
+
+El proyecto a su vez, está dividido por diferentes carpetas las cuales van a ser descritas a continuación:
+* **Security**: Carpeta donde se guarda la configuración del login y la encriptación de los usuarios y contraseñas de los profesores. Hay que tener en cuenta que con la versión 6.1.5 de Spring Security, la configuración de la seguridad cambia y se hace obligatorio el uso de funciones lambda.
+* **Model, Service y Controller**: Son carpetas que crean objetos de las diferentes entidades de la base de datos, hacen uso del repositorio y brinda dirección dentro del sitio respectivamente. Estas carpetas son separadas para cumplir con el patrón estructural MVCS.
+* **Repository**: Carpeta que guarda los interfaces que conectan el modelo con el repositorio JPA (Para operaciones con la base de datos).
