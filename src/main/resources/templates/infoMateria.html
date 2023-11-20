@@ -20,12 +20,6 @@
     <h1 class="mt-5">Bienvenido!</h1>
     <main class="container mt-5">
         <div class="row d-flex">
-            <div class="col-12 border mb-1">
-                <button class="btn btn-primary form-control">Ver Estudiantes Registrados</button>
-                <a class="btn btn-primary form-control" th:href="@{/newStudent}">Agregar Estudiante Nuevo</a>
-                <button class="btn btn-primary form-control">Agregar Estudiante Existente</button>
-                <button class="btn btn-success form-control">Agregar Tarea</button>
-            </div>
             <div class="col-12 border" id="ver-informacion"> <!--Información del curso-->
                 <h2>Información del Curso</h2>
                 <ul>
@@ -35,6 +29,23 @@
                     <li th:text="${'Hora de Inicio: ' + curso.starts}"></li>
                     <li th:text="${'Hora de Finalización: ' + curso.ends}"></li>
                 </ul>
+            </div>
+            <div class="col-12 border mb-1">
+                <a class="btn btn-primary form-control" th:href="@{/newStudent}">Agregar Estudiante Nuevo</a>
+                
+
+                <a class="btn btn-success form-control" th:href="@{'/newHomework/' + ${curso.id}}">Agregar Tarea</a>
+
+                <form class="form-control text-center" th:action="@{'/addExistentStudent/' + ${curso.id}}" method="post" th:object="${busqueda}">
+
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="identificacion" id="identificacion-busqueda" th:field="*{curso}" placeholder="Identificacion" required>
+                        <input class="btn btn-success form-control" type="submit" value="Agregar Estudiante Existente">
+                    </div>
+
+                </form>
+
+                <a class="btn btn-success form-control" th:href="@{'/lookSubject/'+ ${curso.id} +'/homeworkDetails'}">Ver Tareas y Notas</a>
             </div>
             <div class="col-12 border"> <!--Información de los estudiantes.-->
                 <h2>Estudiantes Registrados</h2>
@@ -47,6 +58,7 @@
                         <th scope="col">Dirección</th>
                         <th scope="col">Teléfono</th>
                         <th scope="col">Correo</th>
+                        <th scope="col">Acciones</th>
                     </thead>
                     <tbody>
                         <tr th:each="estudiante: ${registrados}">
@@ -57,6 +69,8 @@
                             <td th:text="${estudiante.address}"></td>
                             <td th:text="${estudiante.phoneNumber}"></td>
                             <td th:text="${estudiante.email}"></td>
+                            <td><a th:href="@{'/deleteStudentSubject/' + ${estudiante.id}}" class="btn btn-danger">Eliminar</a></td>
+                            
                         </tr>
                     </tbody>
                 </table>
@@ -69,7 +83,7 @@
         </div>
     </main>
     
-    <script>
-    </script>
+    <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/}">Volver a Inicio</a>
+    
 </body>
 </html>

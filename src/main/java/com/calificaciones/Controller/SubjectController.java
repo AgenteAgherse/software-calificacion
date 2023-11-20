@@ -4,7 +4,11 @@ import com.calificaciones.External_Forms.FormsIndex;
 import com.calificaciones.Model.Materia;
 import com.calificaciones.Model.Persona;
 import com.calificaciones.Model.Profesor;
+import com.calificaciones.Model.Tarea;
+import com.calificaciones.Repository.GradeRepository;
 import com.calificaciones.Repository.RegisterRepository;
+import com.calificaciones.Service.GradeService;
+import com.calificaciones.Service.HomeworkService;
 import com.calificaciones.Service.PersonService;
 import com.calificaciones.Service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +24,10 @@ import java.util.ArrayList;
 public class SubjectController {
     @Autowired private SubjectService subjectService;
     @Autowired private PersonService personService;
-
+    @Autowired private GradeService gradeService;
     @Autowired private RegisterRepository registerRepository;
+
+    @Autowired private HomeworkService homeworkService;
 
     @GetMapping("/addSubject")
     public String addSubject(Model model) {
@@ -58,9 +64,31 @@ public class SubjectController {
         model.addAttribute("nombre_profesor", personService.getProfessorName(details.getUsername()));
         model.addAttribute("curso", curso);
         model.addAttribute("registrados", personas);
+        model.addAttribute("busqueda", new FormsIndex());
 
 
         return "infoMateria";
+    }
+
+    @GetMapping("/lookSubject/{materia}/homeworkDetails")
+    public String verDetallesMateria(@PathVariable("materia") Integer materia, Model model){
+        ArrayList<Tarea> tareas = homeworkService.getListOfHomeworks(materia);
+        model.addAttribute("tareas", tareas);
+
+        return "detallesTrabajos";
+    }
+
+
+
+
+
+
+
+    @GetMapping("/deleteStudentSubject/{id}")
+    public String deleteStudentSubject(@PathVariable("id") String id) {
+        personService.deleteStudentSubject(id);
+        gradeService.deleteGradesByStudent(id);
+        return "redirect:/";
     }
 
     @GetMapping("/deleteSubject/{id}")
@@ -68,4 +96,7 @@ public class SubjectController {
         subjectService.deleteSubject(id);
         return "redirect:/";
     }
+
+
+
 }

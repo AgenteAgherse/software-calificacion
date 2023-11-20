@@ -13,4 +13,9 @@ public interface GradeRepository extends JpaRepository<Nota, Integer> {
     @Modifying
     void deleteBySubject(@Param("nota") Integer materia);
 
+    @Query("DELETE FROM Nota n WHERE n.student = :id")
+    @Transactional
+    @Modifying
+    void deleteByStudent(@Param("id") Integer id);
+
 }

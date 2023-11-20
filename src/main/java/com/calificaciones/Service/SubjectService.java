@@ -45,4 +45,5 @@ public class SubjectService {
         homeworkRepository.deleteBySubject(id);
         subjectRepository.deleteById(id);
     }
+
 }

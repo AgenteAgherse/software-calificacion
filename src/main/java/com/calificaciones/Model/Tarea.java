@@ -14,6 +14,9 @@ public class Tarea {
     @Column(name = "idtarea")
     private Integer id;
 
+    @Column(name = "nombre")
+    private String name;
+
     @Column(name = "id_materia")
     private Integer subject;
 

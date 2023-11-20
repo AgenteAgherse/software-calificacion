@@ -5,6 +5,7 @@ import com.calificaciones.External_Forms.InformacionPersona;
 import com.calificaciones.Model.Estudiante;
 import com.calificaciones.Model.Persona;
 import com.calificaciones.Model.Profesor;
+import com.calificaciones.Model.Register;
 import com.calificaciones.Service.SubjectService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.HashMap;
@@ -70,6 +72,20 @@ public class PersonController {
         nuevo.setPhoneAttendant(persona.getPhoneAttendant());
         personService.addStudent(nuevo);
 
+        return "redirect:/";
+    }
+
+
+    @PostMapping("/addExistentStudent/{materia}")
+    public String addExistentStudent(@PathVariable("materia") Integer materia, @ModelAttribute FormsIndex busqueda) {
+        Estudiante getStudent = personService.getStudent(busqueda.getCurso());
+
+        if (getStudent == null) return "redirect:/";
+
+        Register register = new Register();
+        register.setStudent(getStudent.getId());
+        register.setSubject(materia);
+        personService.registerStudentSubject(register);
         return "redirect:/";
     }
 }

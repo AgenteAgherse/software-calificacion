@@ -16,7 +16,7 @@ public interface RegisterRepository extends JpaRepository<Register, Integer> {
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM Register r WHERE r.subject = :subject")
-    void deleteByStudent(@Param("subject") Integer materia);
+    @Query("DELETE FROM Register r WHERE r.student = :student")
+    void deleteByStudent(@Param("student") Integer id);
 
 }
