@@ -34,6 +34,11 @@ public class WebConfig {
                     .roles("Profesor")
                     .build());
         }
+        manager.createUser(User.withDefaultPasswordEncoder()
+                .username("admin")
+                .password("admin")
+                .roles("ADMIN")
+                .build());
         return manager;
     }
 
@@ -41,7 +46,7 @@ public class WebConfig {
     @Order(1)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .securityMatcher("/api/**")
+                .securityMatcher("/profesor/**")
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().hasRole("Profesor")
                 )

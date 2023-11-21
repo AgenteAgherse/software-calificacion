@@ -51,7 +51,7 @@
 
             <div class="col-5">
                 <h2>Modificar Nota</h2>
-                <form th:action="@{'/lookSubject/' + ${materia} + '/homeworkDetails/Modify'}" method="post" th:object="${nuevaNota}">
+                <form th:action="@{'/profesor/lookSubject/' + ${materia} + '/homeworkDetails/Modify'}" method="post" th:object="${nuevaNota}">
                     <label for="tarea">Seleccione la tarea</label>
                     <select class="form-select" name="tarea" id="trabajo" th:field="*{id_tarea}">
                         <option value=0>Seleccione...</option>
@@ -75,7 +75,7 @@
             </div>
         </section>
     </main>
-    <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/}">Volver a Inicio</a>
+    <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/profesor}">Volver a Inicio</a>
     
 
 </body>

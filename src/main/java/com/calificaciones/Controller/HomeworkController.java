@@ -4,13 +4,11 @@ import com.calificaciones.Model.Tarea;
 import com.calificaciones.Service.HomeworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@RequestMapping("/profesor")
 public class HomeworkController {
 
     @Autowired private HomeworkService homeworkService;
@@ -29,8 +27,7 @@ public class HomeworkController {
         if (tarea == null) return "redirect:/error";
 
         tarea.setSubject(materia);
-        System.out.println(tarea.toString());
         homeworkService.addHomework(tarea);
-        return "redirect:/";
+        return "redirect:/profesor";
     }
 }

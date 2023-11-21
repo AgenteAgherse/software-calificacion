@@ -19,7 +19,7 @@
 
     <h1 class="text-center mt-5">Bienvenido!</h1>
     <main class="container mt-5">
-        <form th:action="@{'/newHomework/Confirm/' + ${materia}}" method="post" th:object="${taller}">
+        <form th:action="@{'/profesor/newHomework/Confirm/' + ${materia}}" method="post" th:object="${taller}">
             <label for="nombre">Nombre del taller</label>
             <input class="form-control" type="text" name="nombre" th:field="*{name}" placeholder="Nombre del taller" required>
 
@@ -31,6 +31,6 @@
         </form>
     </main>
     
-    <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/}">Volver a Inicio</a>
+    <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/profesor}">Volver a Inicio</a>
 </body>
 </html>

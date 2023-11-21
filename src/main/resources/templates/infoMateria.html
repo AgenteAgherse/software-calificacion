@@ -31,12 +31,12 @@
                 </ul>
             </div>
             <div class="col-12 border mb-1">
-                <a class="btn btn-primary form-control" th:href="@{/newStudent}">Agregar Estudiante Nuevo</a>
+                <a class="btn btn-primary form-control" th:href="@{/profesor/newStudent}">Agregar Estudiante Nuevo</a>
                 
 
-                <a class="btn btn-success form-control" th:href="@{'/newHomework/' + ${curso.id}}">Agregar Tarea</a>
+                <a class="btn btn-success form-control" th:href="@{'/profesor/newHomework/' + ${curso.id}}">Agregar Tarea</a>
 
-                <form class="form-control text-center" th:action="@{'/addExistentStudent/' + ${curso.id}}" method="post" th:object="${busqueda}">
+                <form class="form-control text-center" th:action="@{'/profesor/addExistentStudent/' + ${curso.id}}" method="post" th:object="${busqueda}">
 
                     <div class="input-group">
                         <input class="form-control" type="text" name="identificacion" id="identificacion-busqueda" th:field="*{curso}" placeholder="Identificacion" required>
@@ -45,7 +45,7 @@
 
                 </form>
 
-                <a class="btn btn-success form-control" th:href="@{'/lookSubject/'+ ${curso.id} +'/homeworkDetails'}">Ver Tareas y Notas</a>
+                <a class="btn btn-success form-control" th:href="@{'/profesor/lookSubject/'+ ${curso.id} +'/homeworkDetails'}">Ver Tareas y Notas</a>
             </div>
             <div class="col-12 border"> <!--Información de los estudiantes.-->
                 <h2>Estudiantes Registrados</h2>
@@ -69,7 +69,7 @@
                             <td th:text="${estudiante.address}"></td>
                             <td th:text="${estudiante.phoneNumber}"></td>
                             <td th:text="${estudiante.email}"></td>
-                            <td><a th:href="@{'/deleteStudentSubject/' + ${estudiante.id}}" class="btn btn-danger">Eliminar</a></td>
+                            <td><a th:href="@{'/profesor/deleteStudentSubject/' + ${estudiante.id}}" class="btn btn-danger">Eliminar</a></td>
                             
                         </tr>
                     </tbody>
@@ -78,12 +78,12 @@
 
 
             <div class="col-12">
-                <a th:href="@{'/deleteSubject/' + ${curso.id}}" class="btn btn-danger">Eliminar Materia</a>
+                <a th:href="@{'/profesor/deleteSubject/' + ${curso.id}}" class="btn btn-danger">Eliminar Materia</a>
             </div>
         </div>
     </main>
     
-    <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/}">Volver a Inicio</a>
+    <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/profesor}">Volver a Inicio</a>
     
 </body>
 </html>

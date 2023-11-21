@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @Controller
+@RequestMapping("/profesor")
 public class SubjectController {
     @Autowired private SubjectService subjectService;
     @Autowired private PersonService personService;
@@ -41,7 +42,7 @@ public class SubjectController {
 
 
         subjectService.addSubject(materia);
-        return "redirect:/";
+        return "redirect:/profesor";
     }
 
     // los alumnos registrados y las notas (se crea un botón)
@@ -54,7 +55,7 @@ public class SubjectController {
             curso = subjectService.getSubject(Integer.parseInt(materia.getCurso()));
         }
 
-        if (curso == null) return "redirect:/";
+        if (curso == null) return "redirect:/profesor";
 
         ArrayList<Persona> personas = personService.getGroupOfStudentsInCourse(Integer.parseInt(materia.getCurso()));
         UserDetails details = (UserDetails) auth.getPrincipal();
@@ -116,7 +117,7 @@ public class SubjectController {
         nota.setComments(newGrade.getComentario());
 
         gradeService.saveGrade(nota.getStudent(), nota.getHomeworkId(), nota.getGrade(), nota.getComments());
-        return "redirect:/lookSubject/" + idSubject + "/homeworkDetails";
+        return "redirect:/profesor/lookSubject/" + idSubject + "/homeworkDetails";
     }
 
 

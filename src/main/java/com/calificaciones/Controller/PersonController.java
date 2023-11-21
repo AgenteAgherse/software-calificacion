@@ -13,14 +13,12 @@ import org.springframework.ui.Model;
 import com.calificaciones.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
 @Controller
+@RequestMapping("/profesor")
 public class PersonController {
 
     UserDetails usuario;
@@ -29,9 +27,10 @@ public class PersonController {
     @Autowired private SubjectService subjectService;
 
 
-    @GetMapping(path = "/")
+    @GetMapping("")
     public String getResults(Authentication authentication, Model model) {
         usuario = (UserDetails) authentication.getPrincipal();
+
         this.profesor = personService.getProfessor(usuario.getUsername());
         if (this.profesor.getUser().equals(usuario.getUsername())) {
             //Poner las materias en caso que haya un usuario.
@@ -72,7 +71,7 @@ public class PersonController {
         nuevo.setPhoneAttendant(persona.getPhoneAttendant());
         personService.addStudent(nuevo);
 
-        return "redirect:/";
+        return "redirect:/profesor";
     }
 
 
@@ -86,7 +85,7 @@ public class PersonController {
         register.setStudent(getStudent.getId());
         register.setSubject(materia);
         personService.registerStudentSubject(register);
-        return "redirect:/";
+        return "redirect:/profesor";
     }
 
     @GetMapping("/teacher/EditInformation")
@@ -131,7 +130,7 @@ public class PersonController {
         personService.addProfessor(editProfesor);
         personService.addPerson(persona);
 
-        return "redirect:/";
+        return "redirect:/profesor";
     }
 
 }

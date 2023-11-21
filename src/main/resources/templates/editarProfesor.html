@@ -13,7 +13,7 @@
 
     <h1 class="mt-5">Edición de la Información del Profesor</h1>
     <p class="text-start mt-3">Digilencie los datos para editar la información del profesor.</p>
-    <form th:action="@{/teacher/EditInformation/Confirm}" method="post" th:object="${informacion}">
+    <form th:action="@{/profesor/teacher/EditInformation/Confirm}" method="post" th:object="${informacion}">
 
         <label for="name">Ingrese el nombre del estudiante.</label>
         <input class="form-control" type="text" name="name" id="name" th:field="*{name}" placeholder="Nombre del estudiante" required>
@@ -50,7 +50,7 @@
         <input type="submit" class="btn btn-warning form-control mt-5" value="Finalizar Registro." onclick="confirmar()"></a>
     </form>
 
-    <a class="btn btn-primary text-start mt-5" th:href="@{/}">Volver a Inicio</a>
+    <a class="btn btn-primary text-start mt-5" th:href="@{/profesor}">Volver a Inicio</a>
     <script>
         function confirmar() {
             alert("Acuérdese de la ID. \nHaga el proceso de registro de estudiante a la materia con usuario existente\ny use la ID")

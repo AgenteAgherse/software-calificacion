@@ -29,7 +29,11 @@ El modelo entidad relación es el siguiente:
 
 > Nota: Se cambia el atributo tipo_identificacion de INT a VARCHAR.
 
-
+### Consideraciones a tener en cuenta.
+Para evitar errores al momento de eliminar o actualizar algún registro dentro del programa, por favor, vaya al editor de código donde maneja los SCHEMA de MySQL (PHPMyAdmin, MySQL Workbench, etc) y establezca la variable SET SQL_SAFE_UPDATES con un valor de 0.
+```
+    SET SQL_SAFE_UPDATES=1;
+```
 
 # Proyecto
 El proyecto actualmente usa los servicios que provee el framework de Spring Framework.
@@ -41,6 +45,7 @@ Las librerías necesarias dentro del proyecto son las siguientes:
 * Spring Security
 * Spring Web Services
 * Thymeleaf
+* Springdoc
 
 El proyecto a su vez, está dividido por diferentes carpetas las cuales van a ser descritas a continuación:
 * **Security**: Carpeta donde se guarda la configuración del login y la encriptación de los usuarios y contraseñas de los profesores. Hay que tener en cuenta que con la versión 6.1.5 de Spring Security, la configuración de la seguridad cambia y se hace obligatorio el uso de funciones lambda.
@@ -55,3 +60,17 @@ En la imagen anterior, se muestra el formulario del login dado que Spring Securi
 ![Formulario de inicio de sesión](https://github.com/AgenteAgherse/software-calificacion/blob/main/Database/form_login.png)
 
 ![Index](https://github.com/AgenteAgherse/software-calificacion/blob/main/Database/index.png)
+
+
+### Consideraciones a tener en cuenta
+El proyecto en Spring está usando Thymeleaf como motos de Templates y por ende, la anotación que se usa para mostrar la información en estos casos es 
+```
+@Controller.
+```
+Esto hace que la documentación presentada en Swagger no muestre información de los diferentes métodos de cada uno de estos elementos ya que no tiene un principio REST.
+Si desea ver la información en Swagger, tiene que cambiar dicha anotación por un 
+```
+@RestController
+```
+Sin embargo, tenga en cuenta lo siguiente. Si toma en cuenta esta anotación, la salida va a ser de tipo String y no ResponseEntity por lo que no va a mostrar información alguna acerca de los recursos traídos.
+

@@ -88,4 +88,9 @@ public class PersonService {
         Optional<Estudiante> estudiante = studentRepository.findByIdentification(id);
         estudiante.ifPresent(value -> registerRepository.deleteByStudent(value.getId()));
     }
+
+
+    public List<Persona> obtenerProfesores(String rol) {
+        return personRepository.obtenerInformacionPorRol(rol).orElseGet(ArrayList::new);
+    }
 }

@@ -13,7 +13,7 @@
 
     <h1 class="mt-5">Agregar una Nueva Materia</h1>
     <p class="text-start mt-3">Digilencie los datos para crear la nueva materia.</p>
-    <form th:action="@{/addSubject/Confirm}" method="post" th:object="${materia}">
+    <form th:action="@{/profesor/addSubject/Confirm}" method="post" th:object="${materia}">
 
         <label for="name">Ingrese el nombre de la materia.</label>
         <input class="form-control" type="text" name="name" id="name" th:field="*{name}" placeholder="Nombre de la materia" required>
@@ -36,6 +36,6 @@
         <input type="submit" class="btn btn-primary form-control mt-5" value="Finalizar Registro."></a>
     </form>
 
-    <a class="btn btn-primary text-start mt-5" th:href="@{/}">Volver a Inicio</a>
+    <a class="btn btn-primary text-start mt-5" th:href="@{/profesor}">Volver a Inicio</a>
 </body>
 </html>

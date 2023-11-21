@@ -13,7 +13,7 @@
 
     <h1 class="mt-5">Informe Estudiante</h1>
     <main class="container mt-5">
-        <form th:action="@{/formStudent}" method="post" th:object="${buscar}">
+        <form th:action="@{/profesor/formStudent}" method="post" th:object="${buscar}">
             <div class="form-group">
                 <label for="id">Ingrese la identificación a buscar</label>
                 <input class="form-control" type="text" name="id" id="id" th:field="*{idstudent}">
@@ -40,7 +40,7 @@
             </tbody>
         </table>
     </main>
-    <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/}">Volver a Inicio</a>
+    <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/profesor}">Volver a Inicio</a>
     
 
 </body>
