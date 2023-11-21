@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.ArrayList;
+
 public interface RegisterRepository extends JpaRepository<Register, Integer> {
 
     @Transactional
@@ -18,5 +20,7 @@ public interface RegisterRepository extends JpaRepository<Register, Integer> {
     @Modifying
     @Query("DELETE FROM Register r WHERE r.student = :student")
     void deleteByStudent(@Param("student") Integer id);
+
+
 
 }

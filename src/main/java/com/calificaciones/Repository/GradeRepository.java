@@ -14,7 +14,7 @@ public interface GradeRepository extends JpaRepository<Nota, Integer> {
 
 
     @Query("SELECT n FROM Nota n WHERE n.homeworkId IN (SELECT t.id FROM Tarea t WHERE t.subject = :materia)")
-    Optional<ArrayList<Nota>> getGrades(@Param("materia") Integer id_subject);
+    Optional<ArrayList<Nota>> getGrades(@Param("materia") Integer id);
 
     @Query("DELETE FROM Nota n WHERE n.homeworkId IN (SELECT t.subject FROM Tarea t WHERE t.subject = :nota)")
     @Transactional
@@ -31,4 +31,8 @@ public interface GradeRepository extends JpaRepository<Nota, Integer> {
     @Transactional
     @Modifying
     void updateGrade(Integer student, Integer tarea, Float grade, String comentario);
+
+
+    @Query("SELECT n FROM Nota n WHERE n.student = :student AND n.homeworkId = :tarea")
+    Optional<Nota> obtenerNota(@Param("student") Integer student, @Param("tarea") Integer tarea);
 }

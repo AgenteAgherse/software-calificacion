@@ -15,4 +15,5 @@ public interface PersonRepository extends JpaRepository<Persona, String> {
 
     @Query("SELECT p FROM Persona p WHERE p.id = (SELECT e.identification FROM Estudiante e WHERE e.id = :id)")
     Optional<Persona> obtenerInformacionPersona(@Param("id") Integer id_estudiante);
+
 }

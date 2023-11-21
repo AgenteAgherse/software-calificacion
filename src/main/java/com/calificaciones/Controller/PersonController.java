@@ -1,17 +1,14 @@
 package com.calificaciones.Controller;
 
-import com.calificaciones.External_Forms.FormsIndex;
-import com.calificaciones.External_Forms.InformacionPersona;
+import com.calificaciones.DTO.FormsIndex;
+import com.calificaciones.DTO.InformacionPersona;
 import com.calificaciones.Model.Estudiante;
 import com.calificaciones.Model.Persona;
 import com.calificaciones.Model.Profesor;
 import com.calificaciones.Model.Register;
 import com.calificaciones.Service.SubjectService;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.ui.Model;
 import com.calificaciones.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.calificaciones.Security.WebConfig;
+
 import java.util.HashMap;
 
 @Controller

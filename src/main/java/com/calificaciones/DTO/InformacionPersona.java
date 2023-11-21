@@ -1,4 +1,4 @@
-package com.calificaciones.External_Forms;
+package com.calificaciones.DTO;
 
 import lombok.Data;
 

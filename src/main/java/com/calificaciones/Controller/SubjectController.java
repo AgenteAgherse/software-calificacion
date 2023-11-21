@@ -1,9 +1,8 @@
 package com.calificaciones.Controller;
 
-import com.calificaciones.External_Forms.DetallesNota;
-import com.calificaciones.External_Forms.FormsIndex;
+import com.calificaciones.DTO.DetallesNota;
+import com.calificaciones.DTO.FormsIndex;
 import com.calificaciones.Model.*;
-import com.calificaciones.Repository.GradeRepository;
 import com.calificaciones.Repository.RegisterRepository;
 import com.calificaciones.Service.GradeService;
 import com.calificaciones.Service.HomeworkService;

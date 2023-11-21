@@ -19,6 +19,8 @@ public class GradeService {
 
     public ArrayList<Nota> getGradesBySubject(Integer id_materia) {
         Optional<ArrayList<Nota>> grades = gradeRepository.getGrades(id_materia);
+        System.out.println("Cantidad de Notas: " + grades.get().size());
+        System.out.println(grades.get().toString());
         return grades.orElseGet(ArrayList<Nota>::new);
     }
 
