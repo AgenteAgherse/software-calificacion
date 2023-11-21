@@ -65,10 +65,10 @@
                     </select>
 
                     <label for="nota">Ingrese la nota</label>
-                    <input type="number" class="form-control" name="nota" id="nota" placeholder="Ingrese la nueva nota." th:field="*{nota}" required>
+                    <input type="number" class="form-control" name="nota" id="nota" placeholder="Ingrese la nueva nota." th:field="*{nota}" min="0" max="5" required>
 
                     <label for="comentario">Añada un comentario</label>
-                    <textarea name="comentario" id="comentario" cols="30" rows="10" th:field="*{comentario}" placeholder="Ingrese un comentario (opcional)"></textarea>
+                    <textarea class="form-control" name="comentario" id="comentario" cols="30" rows="10" th:field="*{comentario}" placeholder="Ingrese un comentario (opcional)"></textarea>
                     
                     <input type="submit" class="btn btn-warning form-control mt-5" value="Modificar Nota">
                 </form>

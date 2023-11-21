@@ -65,7 +65,7 @@ En la imagen anterior, se muestra el formulario del login dado que Spring Securi
 ### Consideraciones a tener en cuenta
 El proyecto en Spring está usando Thymeleaf como motos de Templates y por ende, la anotación que se usa para mostrar la información en estos casos es 
 ```
-@Controller.
+@Controller
 ```
 Esto hace que la documentación presentada en Swagger no muestre información de los diferentes métodos de cada uno de estos elementos ya que no tiene un principio REST.
 Si desea ver la información en Swagger, tiene que cambiar dicha anotación por un 

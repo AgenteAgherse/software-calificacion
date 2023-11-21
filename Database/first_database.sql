@@ -32,7 +32,7 @@ CREATE TABLE `estudiante` (
   PRIMARY KEY (`idestudiante`),
   KEY `Estudiante_FKIndex1` (`identificacion`),
   CONSTRAINT `estudiante_ibfk_1` FOREIGN KEY (`identificacion`) REFERENCES `persona` (`identificacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `estudiante` (
 
 LOCK TABLES `estudiante` WRITE;
 /*!40000 ALTER TABLE `estudiante` DISABLE KEYS */;
-INSERT INTO `estudiante` VALUES (1,'3','Martín Lawrence','+86 (559) 144-8683'),(2,'4','Martín Prescott','+27 (922) 824-0260'),(3,'5','Steven Seagal','+358 (425) 695-4068'),(4,'101010101','Steven Seagal','1239012');
+INSERT INTO `estudiante` VALUES (1,'3','Martín Lawrence','+86 (559) 144-8683'),(2,'4','Martín Prescott','+27 (922) 824-0260'),(3,'5','Steven Seagal','+358 (425) 695-4068'),(4,'101010101','Steven Seagal','1239012'),(5,'321321','Ninguno','Ninguno');
 /*!40000 ALTER TABLE `estudiante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +62,7 @@ CREATE TABLE `materia` (
   PRIMARY KEY (`id_materia`),
   KEY `Materia_FKIndex1` (`idprofesor`),
   CONSTRAINT `materia_ibfk_1` FOREIGN KEY (`idprofesor`) REFERENCES `profesor` (`idprofesor`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `materia` (
 
 LOCK TABLES `materia` WRITE;
 /*!40000 ALTER TABLE `materia` DISABLE KEYS */;
-INSERT INTO `materia` VALUES (1,1,'Ciencia','Lunes','07:10','08:10'),(4,1,'Matemáticas','Lunes','10:00','12:00');
+INSERT INTO `materia` VALUES (1,1,'Ciencia','Lunes','07:10','08:10'),(4,1,'Matemáticas','Lunes','10:00','12:00'),(5,8,'Informática','Miércoles','10:00','11:00');
 /*!40000 ALTER TABLE `materia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +93,7 @@ CREATE TABLE `nota` (
   KEY `Nota_FKIndex2` (`id_estudiante`),
   CONSTRAINT `nota_ibfk_1` FOREIGN KEY (`idtarea`) REFERENCES `tarea` (`idtarea`),
   CONSTRAINT `nota_ibfk_2` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiante` (`idestudiante`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +102,7 @@ CREATE TABLE `nota` (
 
 LOCK TABLES `nota` WRITE;
 /*!40000 ALTER TABLE `nota` DISABLE KEYS */;
-INSERT INTO `nota` VALUES (1,2,1,1,''),(2,3,1,0,NULL),(3,2,2,5,NULL),(4,3,2,0,NULL),(5,2,3,0,NULL),(6,3,3,2,'');
+INSERT INTO `nota` VALUES (1,2,1,1,''),(2,3,1,0,NULL),(3,2,2,5,NULL),(4,3,2,0,NULL),(5,2,3,0,NULL),(6,3,3,2,''),(12,5,7,5,'');
 /*!40000 ALTER TABLE `nota` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -155,7 +155,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES ('1','C.C.','Carlos','Bodoque','Apt 1246','+82 (475) 108-2172','jsells0@dot.gov','Profesor'),('101010101','C.C.','Carlos','Santana Martínez','Calle 1#1-1','3000000000','csantanamartinez@gmail.com','Estudiante'),('120349120','C.C.','Camilo','Murcia','Calle 50#14-91','310 2557269','cmurcia@gmail.com','Profesor'),('2','C.C.','Brooke','Embery','Room 1593','+82 (652) 666-4495','bembery1@cpanel.net','Profesor'),('3','CON','Jami','Storah','1st Floor','+86 (559) 144-8683','jstorah0@hugedomains.com','Estudiante'),('4','CON','Marten','Kilgour','Suite 13','+27 (922) 824-0260','mkilgour1@bravesites.com','Estudiante'),('5','C.C.','Davy','Broomer','Apt 1282','+358 (425) 695-4068','dbroomer2@trellian.com','Estudiante');
+INSERT INTO `persona` VALUES ('1','C.C.','Carlos','Bodoque','Apt 1246','+82 (475) 108-2172','jsells0@dot.gov','Profesor'),('101010101','C.C.','Carlos','Santana Martínez','Calle 1#1-1','3000000000','csantanamartinez@gmail.com','Estudiante'),('120349120','C.C.','Camilo','Murcia','Calle 50#14-91','310 2557269','cmurcia@gmail.com','Profesor'),('123456789','C.C.','Agustín','Hernández','calle 1#1-1','12309812390','papellido1@correo.com','Profesor'),('2','C.C.','Brooke','Embery','Room 1593','+82 (652) 666-4495','bembery1@cpanel.net','Profesor'),('3','CON','Jami','Storah','1st Floor','+86 (559) 144-8683','jstorah0@hugedomains.com','Estudiante'),('321321','C.C.','Juan','Vargas','321321','321321','321321@correo.com','Estudiante'),('4','CON','Marten','Kilgour','Suite 13','+27 (922) 824-0260','mkilgour1@bravesites.com','Estudiante'),('5','C.C.','Davy','Broomer','Apt 1282','+358 (425) 695-4068','dbroomer2@trellian.com','Estudiante');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -194,7 +194,7 @@ CREATE TABLE `profesor` (
   PRIMARY KEY (`idprofesor`),
   KEY `profesor_FKIndex1` (`identificacion`),
   CONSTRAINT `profesor_ibfk_1` FOREIGN KEY (`identificacion`) REFERENCES `persona` (`identificacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `profesor` (
 
 LOCK TABLES `profesor` WRITE;
 /*!40000 ALTER TABLE `profesor` DISABLE KEYS */;
-INSERT INTO `profesor` VALUES (1,'1','JStorah1','Bodoque2024'),(2,'2','BEmbery2','BEmbery2'),(6,'120349120','cmurcia','cmurcia');
+INSERT INTO `profesor` VALUES (1,'1','JStorah1','Bodoque2024'),(2,'2','BEmbery2','BEmbery2'),(6,'120349120','cmurcia','cmurcia'),(7,'123456789','papellido189','papellido189'),(8,'123456789','papellido','Agustin');
 /*!40000 ALTER TABLE `profesor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,7 +223,7 @@ CREATE TABLE `registra` (
   KEY `registra_FKIndex2` (`id_materia`),
   CONSTRAINT `registra_ibfk_1` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiante` (`idestudiante`),
   CONSTRAINT `registra_ibfk_2` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -232,7 +232,7 @@ CREATE TABLE `registra` (
 
 LOCK TABLES `registra` WRITE;
 /*!40000 ALTER TABLE `registra` DISABLE KEYS */;
-INSERT INTO `registra` VALUES (1,1,3),(2,1,2),(4,4,3);
+INSERT INTO `registra` VALUES (1,1,3),(2,1,2),(4,4,3),(6,5,5);
 /*!40000 ALTER TABLE `registra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,7 +251,7 @@ CREATE TABLE `tarea` (
   PRIMARY KEY (`idtarea`),
   KEY `tarea_FKIndex1` (`id_materia`),
   CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,7 +260,7 @@ CREATE TABLE `tarea` (
 
 LOCK TABLES `tarea` WRITE;
 /*!40000 ALTER TABLE `tarea` DISABLE KEYS */;
-INSERT INTO `tarea` VALUES (1,1,'Hacer una maqueta de la luna',''),(2,1,'nuevos detalles del taller','nuevo taller'),(3,4,'Ingrese una imagen de una maqueta del edificio más grande que ha visto en fotos','Maqueta edificio');
+INSERT INTO `tarea` VALUES (1,1,'Hacer una maqueta de la luna',''),(2,1,'nuevos detalles del taller','nuevo taller'),(3,4,'Ingrese una imagen de una maqueta del edificio más grande que ha visto en fotos','Maqueta edificio'),(7,5,'Detalles tarea de prueba','Tarea de Prueba');
 /*!40000 ALTER TABLE `tarea` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -302,7 +302,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `agregar_notas_nueva_tarea`(IN id_ma
 BEGIN
 	DECLARE var_final INTEGER DEFAULT 0;
     DECLARE estudiante INTEGER;
-	DECLARE estudiantes CURSOR FOR SELECT id_estudiante FROM registra WHERE id_materia = id_materia;
+	DECLARE estudiantes CURSOR FOR SELECT id_estudiante FROM registra WHERE registra.id_materia = id_materia;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET var_final = 1;
     
     OPEN estudiantes;
@@ -332,4 +332,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-21 11:57:32
+-- Dump completed on 2023-11-21 18:33:08

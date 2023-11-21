@@ -73,6 +73,7 @@ public class SubjectController {
         ArrayList<Tarea> tareas = homeworkService.getListOfHomeworks(materia);
         ArrayList<Nota> notas = gradeService.getGradesBySubject(materia);
 
+        System.out.println(notas.toString());
         ArrayList<DetallesNota> detalles = new ArrayList<>();
         for (Nota nota: notas) {
             DetallesNota nuevoDetalle = new DetallesNota();

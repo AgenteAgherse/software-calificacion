@@ -6,6 +6,7 @@ import com.calificaciones.Model.Estudiante;
 import com.calificaciones.Model.Persona;
 import com.calificaciones.Model.Profesor;
 import com.calificaciones.Model.Register;
+import com.calificaciones.Service.RegisterService;
 import com.calificaciones.Service.SubjectService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +26,9 @@ public class PersonController {
     Profesor profesor = new Profesor();
     @Autowired private PersonService personService;
     @Autowired private SubjectService subjectService;
+
+    @Autowired private RegisterService registerService;
+
 
 
     @GetMapping("")
@@ -85,6 +89,9 @@ public class PersonController {
         register.setStudent(getStudent.getId());
         register.setSubject(materia);
         personService.registerStudentSubject(register);
+        //sE AGREGA EL REGISTRO
+        registerService.addRegister(register);
+
         return "redirect:/profesor";
     }
 
