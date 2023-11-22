@@ -90,16 +90,22 @@ public class SubjectController {
             detalles.add(nuevoDetalle);
         }
 
-        ArrayList<DetallesNota> listadoEstudiantes = new ArrayList<>();
-        for (int i = 0; i < (Integer) detalles.size()/tareas.size(); i++) {
-            listadoEstudiantes.add(detalles.get(i));
+        if (tareas.size() > 0) {
+            ArrayList<DetallesNota> listadoEstudiantes = new ArrayList<>();
+            for (int i = 0; i < (Integer) detalles.size()/tareas.size(); i++) {
+                listadoEstudiantes.add(detalles.get(i));
+            }
+            model.addAttribute("listadoEstudiantes", listadoEstudiantes);
+        }
+        else {
+            model.addAttribute("", new ArrayList<DetallesNota>());
         }
         //Array sin repetir usuarios.
 
 
         model.addAttribute("materia", materia);
         model.addAttribute("nuevaNota", new DetallesNota());
-        model.addAttribute("listadoEstudiantes", listadoEstudiantes);
+
         model.addAttribute("notas", notas);
         model.addAttribute("detalles", detalles);
         model.addAttribute("tareas", tareas);
