@@ -47,6 +47,17 @@ Las librerías necesarias dentro del proyecto son las siguientes:
 * Thymeleaf
 * Springdoc
 
+## Diagrama de Clases
+La estructura del proyecto está hecha como se muestra en la siguiente ilustración
+
+![Diagrama de clases](https://github.com/AgenteAgherse/software-calificacion/blob/main/Database/Diagrama_de_Clases.png)
+
+Como se puede evidenciar, el diagrama resulta extenso por la cantidad de librerías e importaciones que se están aplicando sobre el proyecto. Para ver con mayor detalle, descargar la imagen que se encuentra en:
+```
+    Database\Diagrama_de_Clases.png
+```
+
+## División por Carpetas
 El proyecto a su vez, está dividido por diferentes carpetas las cuales van a ser descritas a continuación:
 * **Security**: Carpeta donde se guarda la configuración del login y la encriptación de los usuarios y contraseñas de los profesores. Hay que tener en cuenta que con la versión 6.1.5 de Spring Security, la configuración de la seguridad cambia y se hace obligatorio el uso de funciones lambda.
 * **Model, Service y Controller**: Son carpetas que crean objetos de las diferentes entidades de la base de datos, hacen uso del repositorio y brinda dirección dentro del sitio respectivamente. Estas carpetas son separadas para cumplir con el patrón estructural MVCS.
