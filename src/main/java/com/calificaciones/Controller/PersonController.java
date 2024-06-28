@@ -6,6 +6,7 @@ import com.calificaciones.Model.Estudiante;
 import com.calificaciones.Model.Persona;
 import com.calificaciones.Model.Profesor;
 import com.calificaciones.Model.Register;
+import com.calificaciones.Service.HomeworkService;
 import com.calificaciones.Service.RegisterService;
 import com.calificaciones.Service.SubjectService;
 import org.springframework.security.core.Authentication;
@@ -28,6 +29,7 @@ public class PersonController {
     @Autowired private SubjectService subjectService;
 
     @Autowired private RegisterService registerService;
+    @Autowired private HomeworkService homeworkService;
 
 
 

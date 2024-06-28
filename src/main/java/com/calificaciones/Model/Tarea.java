@@ -22,4 +22,7 @@ public class Tarea {
 
     @Column(name = "descripcion")
     private String description;
+
+    @Column(name = "porcentaje")
+    private Double percent;
 }

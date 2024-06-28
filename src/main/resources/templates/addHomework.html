@@ -25,9 +25,12 @@
 
             <label for="comentario" class="mt-5">Ingrese los detalles de la tarea</label>
             <textarea class="form-control" name="comentario" id="comentario" th:field="*{description}" cols="30" rows="10" placeholder="Ingrese los detalles de la tarea."></textarea>
-            
 
-            <input type="submit" class="form-control btn btn-success" value="Agregar Tarea">
+            <label for="porcentaje">Porcentaje de la nota</label>
+            <input class="form-control" type="number" min="0" th:max="${restante}" name="porcentaje" th:field="*{percent}" placeholder="Nombre del taller" required>
+            <div th:if="${restante} > 0">
+                <input type="submit" class="form-control btn btn-success" value="Agregar Tarea">
+            </div>
         </form>
     </main>
     

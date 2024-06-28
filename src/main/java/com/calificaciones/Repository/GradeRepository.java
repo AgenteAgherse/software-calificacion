@@ -16,10 +16,10 @@ public interface GradeRepository extends JpaRepository<Nota, Integer> {
     @Query("SELECT n FROM Nota n WHERE n.homeworkId IN (SELECT t.id FROM Tarea t WHERE t.subject = :materia)")
     Optional<ArrayList<Nota>> getGrades(@Param("materia") Integer id);
 
-    @Query("DELETE FROM Nota n WHERE n.homeworkId IN (SELECT t.subject FROM Tarea t WHERE t.subject = :nota)")
+    @Query(value = "DELETE FROM nota WHERE idtarea IN (SELECT idtarea FROM tarea WHERE id_materia = :materia)", nativeQuery = true)
     @Transactional
     @Modifying
-    void deleteBySubject(@Param("nota") Integer materia);
+    void deleteBySubject(@Param("materia") Integer materia);
 
     @Query("DELETE FROM Nota n WHERE n.student = :id")
     @Transactional

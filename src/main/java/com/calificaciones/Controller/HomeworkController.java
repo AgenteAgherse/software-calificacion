@@ -18,7 +18,7 @@ public class HomeworkController {
         tarea.setSubject(materia);
         model.addAttribute("materia", materia);
         model.addAttribute("taller", tarea);
-
+        model.addAttribute("restante", homeworkService.getPorcentajeRestante(Long.valueOf("" + materia)));
         return "addHomework";
     }
 

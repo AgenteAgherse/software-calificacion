@@ -11,5 +11,6 @@ public class DetallesNota {
     private String titulo_tarea;
     private Float nota;
     private String comentario;
+    private Double porcentaje;
 
 }

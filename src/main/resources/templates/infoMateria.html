@@ -31,19 +31,22 @@
                 </ul>
             </div>
             <div class="col-12 border mb-1">
-                <a class="btn btn-primary form-control" th:href="@{/profesor/newStudent}">Agregar Estudiante Nuevo</a>
-                
+                <div th:if="${cantidadTareas} == 0">
+                    <a class="btn btn-primary form-control" th:href="@{/profesor/newStudent}">Agregar Estudiante Nuevo</a>
+                </div>
 
                 <a class="btn btn-success form-control" th:href="@{'/profesor/newHomework/' + ${curso.id}}">Agregar Tarea</a>
 
-                <form class="form-control text-center" th:action="@{'/profesor/addExistentStudent/' + ${curso.id}}" method="post" th:object="${busqueda}">
+                <div th:if="${cantidadTareas} == 0">
+                    <form class="form-control text-center" th:action="@{'/profesor/addExistentStudent/' + ${curso.id}}" method="post" th:object="${busqueda}">
 
-                    <div class="input-group">
-                        <input class="form-control" type="text" name="identificacion" id="identificacion-busqueda" th:field="*{curso}" placeholder="Identificacion" required>
-                        <input class="btn btn-success form-control" type="submit" value="Agregar Estudiante Existente">
-                    </div>
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="identificacion" id="identificacion-busqueda" th:field="*{curso}" placeholder="Identificacion" required>
+                            <input class="btn btn-success form-control" type="submit" value="Agregar Estudiante Existente">
+                        </div>
 
-                </form>
+                    </form>
+                </div>
 
                 <a class="btn btn-success form-control" th:href="@{'/profesor/lookSubject/'+ ${curso.id} +'/homeworkDetails'}">Ver Tareas y Notas</a>
             </div>

@@ -16,4 +16,7 @@ public interface SubjectRepository extends JpaRepository<Materia, Integer> {
 
     @Query("SELECT m FROM Materia m WHERE m.id IN (SELECT r.subject FROM Register r WHERE r.student = :student)")
     Optional<List<Materia>> obtenerMateriasRegistradas(@Param("student") Integer student);
+
+    @Query(value = "SELECT COUNT(*) FROM tarea WHERE id_materia = :id_materia", nativeQuery = true)
+    Integer getCantidadTareas(@Param("id_materia") Integer id_materia);
 }

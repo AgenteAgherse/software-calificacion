@@ -29,6 +29,7 @@
                 <th scope="col">Título</th>
                 <th scope="col">Nota</th>
                 <th scope="col">Comentario</th>
+                <th scope="col">Porcentaje de la Nota</th>
             </thead>
             <tbody>
                 <tr th:each="nota: ${entry.value}">
@@ -36,9 +37,27 @@
                     <td th:text="${nota.titulo_tarea}"></td>
                     <td th:text="${nota.nota}"></td>
                     <td th:text="${nota.comentario}"></td>
+                    <td th:text="${nota.porcentaje} + '%'"></td>
                 </tr>
             </tbody>
         </table>
+
+        <h2 class="text-center">Promedio del curso</h2>
+        <table class="table mt-2">
+            <thead>
+            <th scope="col">Id. Materia</th>
+            <th scope="col">Materia</th>
+            <th scope="col">Promedio</th>
+            </thead>
+            <tbody>
+            <tr th:each="materia : ${promedios}">
+                <td th:text="${materia.id_materia}">ID Materia</td>
+                <td th:text="${materia.nombre}">Nombre</td>
+                <td th:text="${materia.promedio}">Promedio</td>
+            </tr>
+            </tbody>
+        </table>
+
     </main>
     <a class="btn btn-primary text-start mt-5 mb-5" th:href="@{/profesor}">Volver a Inicio</a>
     

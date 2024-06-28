@@ -1,11 +1,13 @@
 package com.calificaciones.Service;
 
+import com.calificaciones.DTO.ListadoMaterias;
 import com.calificaciones.Model.Tarea;
 import com.calificaciones.Repository.HomeworkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class HomeworkService {
@@ -27,5 +29,13 @@ public class HomeworkService {
 
     public Tarea getHomework(Integer id_subject) {
         return homeworkRepository.findById(id_subject).orElseGet(null);
+    }
+
+    public Double getPorcentajeRestante(Long id_subject) {
+        return homeworkRepository.porcentajeRestante(id_subject);
+    }
+
+    public List<ListadoMaterias> obtenerPromedios(Integer identificacion) {
+        return homeworkRepository.obtenerPromedios(identificacion);
     }
 }

@@ -51,7 +51,6 @@ public class SubjectController {
     public String getMateria(Authentication auth, @ModelAttribute FormsIndex materia, Model model) {
         Materia curso = null;
         if (materia != null) {
-            System.out.println(materia.getCurso());
             curso = subjectService.getSubject(Integer.parseInt(materia.getCurso()));
         }
 
@@ -64,6 +63,7 @@ public class SubjectController {
         model.addAttribute("registrados", personas);
         model.addAttribute("busqueda", new FormsIndex());
 
+        model.addAttribute("cantidadTareas", subjectService.cantidadTareas(Integer.valueOf(materia.getCurso())));
 
         return "infoMateria";
     }
@@ -73,7 +73,6 @@ public class SubjectController {
         ArrayList<Tarea> tareas = homeworkService.getListOfHomeworks(materia);
         ArrayList<Nota> notas = gradeService.getGradesBySubject(materia);
 
-        System.out.println(notas.toString());
         ArrayList<DetallesNota> detalles = new ArrayList<>();
         for (Nota nota: notas) {
             DetallesNota nuevoDetalle = new DetallesNota();
@@ -101,7 +100,6 @@ public class SubjectController {
             model.addAttribute("", new ArrayList<DetallesNota>());
         }
         //Array sin repetir usuarios.
-
 
         model.addAttribute("materia", materia);
         model.addAttribute("nuevaNota", new DetallesNota());

@@ -2,10 +2,7 @@ package com.calificaciones.Service;
 
 import com.calificaciones.DTO.DetallesNota;
 import com.calificaciones.Model.*;
-import com.calificaciones.Repository.GradeRepository;
-import com.calificaciones.Repository.HomeworkRepository;
-import com.calificaciones.Repository.StudentRepository;
-import com.calificaciones.Repository.SubjectRepository;
+import com.calificaciones.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +17,8 @@ public class SubjectService {
     @Autowired private SubjectRepository subjectRepository;
     @Autowired private HomeworkRepository homeworkRepository;
     @Autowired private GradeRepository gradeRepository;
+
+    @Autowired private RegisterRepository registerRepository;
 
     @Autowired private StudentRepository studentRepository;
 
@@ -47,6 +46,7 @@ public class SubjectService {
     public void deleteSubject(Integer id) {
         gradeRepository.deleteBySubject(id);
         homeworkRepository.deleteBySubject(id);
+        registerRepository.deleteBySubject(id);
         subjectRepository.deleteById(id);
     }
 
@@ -82,7 +82,7 @@ public class SubjectService {
                     //Se busca la nota.
                     Nota nota = gradeRepository.obtenerNota(estudiante.getId(), tarea.getId()).get();
                     DetallesNota detalles = new DetallesNota();
-
+                    detalles.setPorcentaje(tarea.getPercent());
                     //Si la nota es diferente de null
                     if (nota != null) {
                         detalles.setTitulo_tarea(tarea.getName());
@@ -101,4 +101,7 @@ public class SubjectService {
         return informe;
     }
 
+    public Integer cantidadTareas(Integer id_materia) {
+        return subjectRepository.getCantidadTareas(id_materia);
+    }
 }
