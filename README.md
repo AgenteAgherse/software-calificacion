@@ -25,7 +25,9 @@ La base de datos actualmente contiene 7 tablas de las cuales, se puede tomar la 
 
 El modelo entidad relación es el siguiente:
 
-![Diagrama entidad relación del proyecto](https://github.com/AgenteAgherse/software-calificacion/blob/main/Database/MER.png)
+![Diagrama Entidad Relación](https://github.com/AgenteAgherse/software-calificacion/blob/main/Database/Entidad_Relacion.png)
+
+![Diagrama Modelo Relacional](https://github.com/AgenteAgherse/software-calificacion/blob/main/Database/MER.png)
 
 > Nota: Se cambia el atributo tipo_identificacion de INT a VARCHAR.
 
